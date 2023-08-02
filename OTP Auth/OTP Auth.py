@@ -32,7 +32,7 @@ def connectingSender():
 
 def sendingMail(receiver, server):
     msg = (
-        "Hey ! \n This is your OTP is "
+        "Hey ! \nThis is your OTP  "
         + code
         + " sent to test OTP Auth application by Dev."
     )
