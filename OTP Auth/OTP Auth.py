@@ -2,12 +2,10 @@ import random
 import smtplib
 import emoji
 import webbrowser
-import customtkinter
+import customtkinter as ctk
 
-customtkinter.set_appearance_mode("dark")  # Modes: "System" (standard), "Dark", "Light"
-customtkinter.set_default_color_theme(
-    "blue"
-)  # Themes: "blue" (standard), "green", "dark-blue"
+ctk.set_appearance_mode("dark")  # Modes: "System" (standard), "Dark", "Light"
+ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 
 def callback(url):
@@ -33,54 +31,51 @@ def connectingSender():
 
 
 def sendingMail(receiver, server):
-    msg = "Hello! \n This is your OTP is " + code
+    msg = (
+        "Hey ! \n This is your OTP is "
+        + code
+        + " sent to test OTP Auth application by Dev."
+    )
     server.sendmail(sender, receiver, msg)
     server.quit()
 
 
 def checkOTP():
     if code == codeEntry.get():
-        accept = customtkinter.CTkLabel(app, text="Successful Verification!")
+        accept = ctk.CTkLabel(app, text="Successful Verification!")
 
         accept.pack(pady=10, padx=10)
     else:
-        refuse = customtkinter.CTkLabel(app, text="Unsuccessful Verification!")
+        refuse = ctk.CTkLabel(app, text="Unsuccessful Verification!")
 
         refuse.pack(pady=10, padx=10)
 
 
-app = customtkinter.CTk()
+app = ctk.CTk()
 app.geometry("400x780")
 app.title("OTP Verification")
 
 
-frame_1 = customtkinter.CTkFrame(master=app)
+frame_1 = ctk.CTkFrame(master=app)
 frame_1.pack(pady=20, padx=60, fill="both", expand=True)
 
-mailMsg = customtkinter.CTkLabel(
-    master=frame_1, text="OTP Authentication", justify=customtkinter.LEFT
-)
+mailMsg = ctk.CTkLabel(master=frame_1, text="OTP Authentication", justify=ctk.LEFT)
 mailMsg.pack(pady=10, padx=10)
 
-receiverMail = customtkinter.CTkEntry(master=frame_1, placeholder_text="Enter Email")
+receiverMail = ctk.CTkEntry(master=frame_1, placeholder_text="Enter Email")
 receiverMail.pack(pady=10, padx=10)
 
-sendOTP = customtkinter.CTkButton(
-    master=frame_1, text="Send OTP", command=connectingSender
-)
+sendOTP = ctk.CTkButton(master=frame_1, text="Send OTP", command=connectingSender)
 sendOTP.pack(pady=10, padx=10)
 
-codeEntry = customtkinter.CTkEntry(master=frame_1, placeholder_text="Enter OTP")
+codeEntry = ctk.CTkEntry(master=frame_1, placeholder_text="Enter OTP")
 codeEntry.pack(pady=10, padx=10)
 
-verify = customtkinter.CTkButton(master=frame_1, text="Verify OTP", command=checkOTP)
+verify = ctk.CTkButton(master=frame_1, text="Verify OTP", command=checkOTP)
 verify.pack(pady=10, padx=10)
 
-emoji = f'{emoji.emojize(":growing_heart:")}'
-em = "Created with " + emoji + " @Dev"
-author = customtkinter.CTkLabel(
-    master=frame_1, text=em, justify=customtkinter.LEFT, cursor="hand2"
-)
+em = emoji.emojize("Created with :growing_heart:  @Dev")
+author = ctk.CTkLabel(master=frame_1, text=em, justify=ctk.LEFT, cursor="hand2")
 author.pack(pady=10, padx=10)
 author.bind(
     "<Button-1>",
