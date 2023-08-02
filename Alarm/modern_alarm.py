@@ -2,7 +2,7 @@
 import datetime
 import time
 import winsound
-import threading
+from threading import Thread
 import customtkinter
 import webbrowser
 import emoji
@@ -38,10 +38,7 @@ def alarm(set_alarm_timer):
         if now == set_alarm_timer:
             print("Time to Wake up")
             # winsound.PlaySound("sound.wav", winsound.SND_ASYNC)
-            winsound.PlaySound(
-                "C:\\Users\\deven\\Downloads\\Telegram Desktop\\alarm.wav",
-                winsound.SND_LOOP
-            )
+            sound = [winsound.Beep(600, 900) for i in range(5)]
             print("wAke uP gOizz..")
             # playsound("C:\\Users\\deven\\OneDrive\\Desktop\\SYNC Intern\\camerashutter.wav")
             break
@@ -83,12 +80,14 @@ sectime.pack(pady=10, padx=10)
 
 
 set_alarm = customtkinter.CTkButton(
-    master=frame_1, text="Set Alarm", command=threading.Thread(target=actual_time).start
+    master=frame_1, text="Set Alarm", command=Thread(target=actual_time).start
 )
 set_alarm.pack(pady=10, padx=10)
 
-emoji = f'{emoji.emojize(":growing_heart:")}'
-em = "Created with " + emoji + " @Dev"
+# emoji = f'{emoji.emojize(":growing_heart:")}'
+# em = "Created with " + emoji + " @Dev"
+
+em = emoji.emojize("Created with :growing_heart:  @Dev")
 author = customtkinter.CTkLabel(
     master=frame_1, text=em, justify=customtkinter.LEFT, cursor="hand2"
 )
