@@ -40,9 +40,11 @@ def on_progress(stream, chunk, bytes_remaining):
 ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("green")
 
+
 app = ctk.CTk()
 app.geometry("720x480")
 app.title("Youtube Downloader")
+app.iconbitmap("YT Dwnld\YDICO.ico")
 
 # label
 title = ctk.CTkLabel(
